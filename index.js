@@ -57,7 +57,6 @@ app.post(
 app.get("/auth/me", checkAuth, UserController.getMe);
 
 app.get("/posts", PostController.getAll);
-app.get("/posts/tags", PostController.getTags);
 app.get("/posts/:id", PostController.getOne);
 app.post(
   "/posts",
