@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const multer = require("multer");
+const cors = require("cors");
 
 const { registerValidation, loginValidation } = require("./validations/auth");
 const { postCreateValidation } = require("./validations/post");
@@ -27,6 +28,7 @@ const upload = multer({ storage });
 
 app.use(express.json());
 app.use("uploads", express.static("uploads"));
+app.use(cors());
 
 mongoose.set("strictQuery", false);
 mongoose
