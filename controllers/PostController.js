@@ -117,10 +117,28 @@ const update = async (req, res) => {
   }
 };
 
+const getTags = async (req, res) => {
+  try {
+    const posts = await PostModel.find().limit(5).exec();
+    const tags = posts
+      .map((post) => post.tags)
+      .flat()
+      .slice(0, 5);
+    res.json(tags);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "couldn't get tags",
+      error,
+    });
+  }
+};
+
 module.exports = {
   create,
   getOne,
   getAll,
   remove,
   update,
+  getTags,
 };
